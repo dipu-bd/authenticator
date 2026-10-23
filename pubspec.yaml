@@ -1,8 +1,8 @@
 name: authenticator
-description: "Bitanon Authenticator - local, secure, open-source."
+description: 'Bitanon Authenticator - local, secure, open-source.'
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: "none" # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -33,23 +33,23 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
+  cupertino_icons: ^2.0.0
 
   # Space Grotesk (UI) + JetBrains Mono (codes) from Google Fonts.
-  google_fonts: ^6.2.1
+  google_fonts: ^9.0.0
 
   # Open the hashlib / cipherlib repo links from Settings → About.
-  url_launcher: ^6.3.0
+  url_launcher: ^6.3.3
 
   # Crypto: real RFC 6238 TOTP (HOTP/HMAC/base32) + PBKDF2 key derivation.
-  hashlib: ^2.3.4
+  hashlib: ^2.4.2
   # Symmetric encryption (AES-GCM) for the local vault + Drive/file backups.
-  cipherlib: ^0.4.0
+  cipherlib: ^0.7.2
 
   # Camera + QR/barcode scanning for add-via-QR and Google Authenticator import.
-  mobile_scanner: ^7.2.0
+  mobile_scanner: ^7.4.2
   # Biometric (Face ID / fingerprint) unlock.
-  local_auth: ^3.0.1
+  local_auth: ^3.0.2
 
   # Google Drive backup/restore.
   google_sign_in: ^7.2.0
@@ -58,12 +58,12 @@ dependencies:
   http: ^1.2.0
 
   # Encrypted vault file export/import + on-device persistence.
-  path_provider: ^2.1.5
-  shared_preferences: ^2.3.0
-  file_picker: ^11.0.2
-  share_plus: ^12.0.0
+  path_provider: ^2.1.6
+  shared_preferences: ^2.5.6
+  file_picker: ^13.1.0
+  # share_plus: ^13.3.1
   # Keystore-backed cache of the vault key for biometric unlock.
-  flutter_secure_storage: ^10.3.1
+  flutter_secure_storage: ^11.2.0
 
 dev_dependencies:
   flutter_test:
