@@ -1,24 +1,9 @@
 import 'package:flutter/material.dart';
-import '../widgets/app_icons.dart';
+
 import '../widgets/app_scope.dart';
 import '../widgets/buttons.dart';
 import '../widgets/gradient_scaffold.dart';
-
-class _Slide {
-  final String icon;
-  final String title;
-  final String body;
-  const _Slide(this.icon, this.title, this.body);
-}
-
-const _slides = [
-  _Slide('shield', 'Your keys, encrypted',
-      'Every secret is sealed on-device with cipherlib before it ever touches storage or the cloud.'),
-  _Slide('qr', 'Add in seconds',
-      'Scan a QR code, paste a setup key, or batch-import everything from Google Authenticator.'),
-  _Slide('cloudUp', 'Backup to your Drive',
-      'Keep an encrypted copy in your own Google Drive — restore on any device, anytime.'),
-];
+import 'onboarding/onboarding_slide_card.dart';
 
 class OnboardingScreen extends StatefulWidget {
   final VoidCallback onDone;
@@ -35,8 +20,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = AppScope.themeOf(context);
-    final s = _slides[_i];
-    final last = _i == _slides.length - 1;
+    final s = defaultSlides[_i];
+    final last = _i == defaultSlides.length - 1;
 
     return GradientScaffold(
       theme: theme,
@@ -54,48 +39,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     transitionBuilder: (child, anim) => FadeTransition(
                       opacity: anim,
                       child: SlideTransition(
-                        position: Tween(begin: const Offset(0, 0.1), end: Offset.zero)
-                            .animate(anim),
+                        position: Tween(
+                          begin: const Offset(0, 0.1),
+                          end: Offset.zero,
+                        ).animate(anim),
                         child: child,
                       ),
                     ),
-                    child: Column(
+                    child: KeyedSubtree(
                       key: ValueKey(_i),
-                      children: [
-                        Container(
-                          width: 96,
-                          height: 96,
-                          decoration: BoxDecoration(
-                            gradient: theme.accentGradient,
-                            borderRadius: BorderRadius.circular(30),
-                            boxShadow: [
-                              BoxShadow(
-                                color: theme.accent.withValues(alpha: 0.33),
-                                blurRadius: 44,
-                                offset: const Offset(0, 18),
-                              ),
-                            ],
-                          ),
-                          alignment: Alignment.center,
-                          child: AppIcon(s.icon, size: 46, color: theme.onAccent),
-                        ),
-                        const SizedBox(height: 34),
-                        Text(
-                          s.title,
-                          textAlign: TextAlign.center,
-                          style: theme.ui(size: 27, weight: FontWeight.w700, letterSpacing: -0.3),
-                        ),
-                        const SizedBox(height: 12),
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 300),
-                          child: Text(
-                            s.body,
-                            textAlign: TextAlign.center,
-                            style: theme.ui(
-                                size: 15.5, weight: FontWeight.w400, color: theme.muted, height: 1.5),
-                          ),
-                        ),
-                      ],
+                      child: OnboardingSlideCard(theme: theme, slide: s),
                     ),
                   ),
                 ],
@@ -103,7 +56,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(_slides.length, (k) {
+              children: List.generate(defaultSlides.length, (k) {
                 final active = k == _i;
                 return AnimatedContainer(
                   duration: const Duration(milliseconds: 250),
@@ -138,8 +91,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         onTap: widget.onDone,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 14),
-                          child: Text('Skip',
-                              style: theme.ui(size: 14, weight: FontWeight.w600, color: theme.dim)),
+                          child: Text(
+                            'Skip',
+                            style: theme.ui(
+                              size: 14,
+                              weight: FontWeight.w600,
+                              color: theme.dim,
+                            ),
+                          ),
                         ),
                       ),
                     ),
