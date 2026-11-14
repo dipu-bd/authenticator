@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../theme/app_theme.dart';
 import 'app_icons.dart';
 
@@ -38,9 +38,12 @@ class _ToastWidget extends StatefulWidget {
   State<_ToastWidget> createState() => _ToastWidgetState();
 }
 
-class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderStateMixin {
-  late final AnimationController _c =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
+class _ToastWidgetState extends State<_ToastWidget>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _c = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 300),
+  );
 
   @override
   void initState() {
@@ -62,7 +65,10 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
   @override
   Widget build(BuildContext context) {
     final theme = widget.theme;
-    final curve = CurvedAnimation(parent: _c, curve: const Cubic(0.32, 0.72, 0, 1));
+    final curve = CurvedAnimation(
+      parent: _c,
+      curve: const Cubic(0.32, 0.72, 0, 1),
+    );
     return Positioned(
       left: 0,
       right: 0,
@@ -76,7 +82,10 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
                 opacity: curve.value,
                 child: Transform.translate(
                   offset: Offset(0, 16 * (1 - curve.value)),
-                  child: Transform.scale(scale: 0.96 + 0.04 * curve.value, child: child),
+                  child: Transform.scale(
+                    scale: 0.96 + 0.04 * curve.value,
+                    child: child,
+                  ),
                 ),
               );
             },
@@ -89,7 +98,11 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
                 borderRadius: BorderRadius.circular(999),
                 border: Border.all(color: theme.borderHi),
                 boxShadow: const [
-                  BoxShadow(color: Color(0x66000000), blurRadius: 30, offset: Offset(0, 10)),
+                  BoxShadow(
+                    color: Color(0x66000000),
+                    blurRadius: 30,
+                    offset: Offset(0, 10),
+                  ),
                 ],
               ),
               child: Row(
@@ -97,8 +110,10 @@ class _ToastWidgetState extends State<_ToastWidget> with SingleTickerProviderSta
                 children: [
                   AppIcon('check', size: 18, color: theme.accent),
                   const SizedBox(width: 10),
-                  Text(widget.message,
-                      style: theme.ui(size: 14, weight: FontWeight.w600)),
+                  Text(
+                    widget.message,
+                    style: theme.ui(size: 14, weight: FontWeight.w600),
+                  ),
                 ],
               ),
             ),

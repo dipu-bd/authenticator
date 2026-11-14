@@ -2,18 +2,19 @@
 
 This app implements real authenticator functionality on top of the design:
 
-| Feature | Package | Where |
-|---|---|---|
-| RFC 6238 TOTP (HMAC-SHA1/256/512) | `hashlib` | `lib/services/totp.dart` |
-| Vault & backup encryption (AES-256-GCM + PBKDF2) | `cipherlib` + `hashlib` | `lib/services/vault_crypto.dart` |
-| Encrypted on-device persistence | `path_provider` / `shared_preferences` (web) | `lib/services/vault_store.dart` |
-| QR scan (add + Google Authenticator import) | `mobile_scanner` | `lib/widgets/scanner_view.dart` |
-| `otpauth://` + `otpauth-migration://` parsing | (built-in) | `lib/services/otpauth.dart`, `lib/services/ga_migration.dart` |
-| Biometric unlock | `local_auth` + `flutter_secure_storage` | `lib/services/biometric.dart`, `lib/services/secure_key_store.dart` |
-| Google Drive backup/restore | `google_sign_in` + `googleapis` | `lib/services/drive_backup.dart` |
-| Encrypted file export/import (`bitanon-vault.enc`) | `file_picker` + `share_plus` | `lib/services/backup_file.dart` |
+| Feature                                            | Package                                      | Where                                                               |
+| -------------------------------------------------- | -------------------------------------------- | ------------------------------------------------------------------- |
+| RFC 6238 TOTP (HMAC-SHA1/256/512)                  | `hashlib`                                    | `lib/services/totp.dart`                                            |
+| Vault & backup encryption (AES-256-GCM + PBKDF2)   | `cipherlib` + `hashlib`                      | `lib/services/vault_crypto.dart`                                    |
+| Encrypted on-device persistence                    | `path_provider` / `shared_preferences` (web) | `lib/services/vault_store.dart`                                     |
+| QR scan (add + Google Authenticator import)        | `mobile_scanner`                             | `lib/widgets/scanner_view.dart`                                     |
+| `otpauth://` + `otpauth-migration://` parsing      | (built-in)                                   | `lib/services/otpauth.dart`, `lib/services/ga_migration.dart`       |
+| Biometric unlock                                   | `local_auth` + `flutter_secure_storage`      | `lib/services/biometric.dart`, `lib/services/secure_key_store.dart` |
+| Google Drive backup/restore                        | `google_sign_in` + `googleapis`              | `lib/services/drive_backup.dart`                                    |
+| Encrypted file export/import (`bitanon-vault.enc`) | `file_picker` + `share_plus`                 | `lib/services/backup_file.dart`                                     |
 
 ## Security model
+
 - On first run the user sets a 6-digit **PIN**. A 32-byte AES key is derived with
   **PBKDF2-HMAC-SHA256** (120k iterations) from the PIN + a random salt.
 - The vault is serialized to JSON and encrypted with **AES-256-GCM** (cipherlib).
@@ -27,12 +28,15 @@ This app implements real authenticator functionality on top of the design:
   with the file cannot read codes without the PIN.
 
 ## Build note (this environment)
+
 `flutter build apk` failed here only because the container ships **JDK 26**, which
 current Gradle does not support yet ("Unsupported class file major version 70").
 Build Android with a Flutter-supported JDK (17 or 21):
+
 ```
 flutter config --jdk-dir /path/to/jdk-21
 ```
+
 `flutter analyze`, the unit tests, and `flutter build web` all pass.
 
 ---
@@ -40,11 +44,13 @@ flutter config --jdk-dir /path/to/jdk-21
 ## Platform setup
 
 ### Android (already configured)
+
 - `android/app/src/main/AndroidManifest.xml` — CAMERA, USE_BIOMETRIC, INTERNET.
 - `MainActivity.kt` extends `FlutterFragmentActivity` (required by `local_auth`).
 - `minSdk` raised to 23 (`android/app/build.gradle.kts`).
 
 ### iOS (already configured)
+
 - `ios/Runner/Info.plist` — `NSCameraUsageDescription`, `NSFaceIDUsageDescription`.
 - Set the deployment target to iOS 13+ in Xcode/Podfile if pod install complains.
 
@@ -93,6 +99,7 @@ Drive UI, only this app can read it).
 ---
 
 ## How the flows work
+
 - **Add via QR**: `Add → Scan QR code`. Decodes `otpauth://totp/...`.
 - **Add manually**: type issuer/secret (+ advanced algo/digits/period), or paste a
   full `otpauth://` URL into the secret field to auto-fill.

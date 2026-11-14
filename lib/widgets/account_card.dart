@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../models/account.dart';
 import '../services/totp.dart';
 import '../state/ticker.dart';
@@ -67,8 +67,16 @@ class _AccountCardState extends State<AccountCard> {
             Row(
               children: [
                 isLogo
-                    ? AccountTile(account: acct, theme: theme, size: compact ? 36 : 42)
-                    : BrandTile(account: acct, size: compact ? 38 : 44, radius: theme.tileRadius),
+                    ? AccountTile(
+                        account: acct,
+                        theme: theme,
+                        size: compact ? 36 : 42,
+                      )
+                    : BrandTile(
+                        account: acct,
+                        size: compact ? 38 : 44,
+                        radius: theme.tileRadius,
+                      ),
                 SizedBox(width: compact ? 12 : 14),
                 Expanded(child: _middle(theme, acct, compact)),
                 SizedBox(width: compact ? 12 : 14),
@@ -76,7 +84,11 @@ class _AccountCardState extends State<AccountCard> {
               ],
             ),
             if (isBorder)
-              PerimeterCountdown(theme: theme, period: acct.period, radius: theme.radius),
+              PerimeterCountdown(
+                theme: theme,
+                period: acct.period,
+                radius: theme.radius,
+              ),
           ],
         ),
       ),
@@ -116,7 +128,11 @@ class _AccountCardState extends State<AccountCard> {
                 acct.label,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: theme.ui(size: 12.5, weight: FontWeight.w400, color: theme.dim),
+                style: theme.ui(
+                  size: 12.5,
+                  weight: FontWeight.w400,
+                  color: theme.dim,
+                ),
               ),
             ],
           ],
@@ -127,7 +143,8 @@ class _AccountCardState extends State<AccountCard> {
 
   Widget _trailing(AppTheme theme, Account acct) {
     final showSideCountdown =
-        theme.countdown == CountdownStyle.ring || theme.countdown == CountdownStyle.bar;
+        theme.countdown == CountdownStyle.ring ||
+        theme.countdown == CountdownStyle.bar;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
@@ -155,7 +172,10 @@ class _AccountCardState extends State<AccountCard> {
           theme.countdown == CountdownStyle.bar
               ? CountdownBar(theme: theme, period: acct.period)
               : CountdownRing(
-                  theme: theme, period: acct.period, size: theme.isCompact ? 22 : 26),
+                  theme: theme,
+                  period: acct.period,
+                  size: theme.isCompact ? 22 : 26,
+                ),
         ],
       ],
     );

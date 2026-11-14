@@ -31,8 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  material_ui: any
   cupertino_icons: ^2.0.0
 
   # Space Grotesk (UI) + JetBrains Mono (codes) from Google Fonts.

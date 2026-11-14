@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../services/drive_backup.dart';
 import '../state/app_controller.dart';
@@ -48,8 +48,9 @@ class _DriveScreenState extends State<DriveScreen> {
       }
       if (mounted) showAppToast(context, theme, 'Google Drive connected');
     } on UnsupportedError {
-      if (mounted)
+      if (mounted) {
         showAppToast(context, theme, 'Sign-in not supported on this platform');
+      }
     } catch (_) {
       if (mounted) showAppToast(context, theme, 'Could not connect to Drive');
     } finally {
@@ -94,17 +95,19 @@ class _DriveScreenState extends State<DriveScreen> {
         accounts = app.decodeBackup(blob, pin: pin);
       }
       if (accounts == null) {
-        if (mounted)
+        if (mounted) {
           showAppToast(context, theme, 'Wrong PIN or corrupt backup');
+        }
         return;
       }
       final added = await app.mergeAccounts(accounts);
-      if (mounted)
+      if (mounted) {
         showAppToast(
           context,
           theme,
           'Restored $added ${added == 1 ? 'account' : 'accounts'}',
         );
+      }
     } catch (_) {
       if (mounted) showAppToast(context, theme, 'Restore failed');
     } finally {

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../theme/app_theme.dart';
 import 'app_icons.dart';
 
@@ -100,7 +100,10 @@ class GhostButton extends StatelessWidget {
               AppIcon(icon!, size: 20, color: c),
               const SizedBox(width: 9),
             ],
-            Text(label, style: theme.ui(size: 15.5, weight: FontWeight.w600, color: c)),
+            Text(
+              label,
+              style: theme.ui(size: 15.5, weight: FontWeight.w600, color: c),
+            ),
           ],
         ),
       ),
@@ -142,7 +145,11 @@ class AppToggle extends StatelessWidget {
             color: Colors.white,
             shape: BoxShape.circle,
             boxShadow: [
-              BoxShadow(color: Color(0x4D000000), blurRadius: 3, offset: Offset(0, 1)),
+              BoxShadow(
+                color: Color(0x4D000000),
+                blurRadius: 3,
+                offset: Offset(0, 1),
+              ),
             ],
           ),
         ),

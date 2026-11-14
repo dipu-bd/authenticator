@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../theme/app_theme.dart';
 
 /// A segmented control on a tinted track. The selected segment fills accent.
@@ -39,7 +39,9 @@ class Segmented<T> extends StatelessWidget {
                   child: Container(
                     height: height,
                     decoration: BoxDecoration(
-                      color: options[i] == value ? theme.accent : Colors.transparent,
+                      color: options[i] == value
+                          ? theme.accent
+                          : Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     alignment: Alignment.center,
@@ -48,7 +50,9 @@ class Segmented<T> extends StatelessWidget {
                       style: theme.ui(
                         size: 13.5,
                         weight: FontWeight.w600,
-                        color: options[i] == value ? theme.onAccent : theme.muted,
+                        color: options[i] == value
+                            ? theme.onAccent
+                            : theme.muted,
                       ),
                     ),
                   ),

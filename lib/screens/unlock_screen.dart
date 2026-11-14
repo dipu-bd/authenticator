@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../router.dart';
 import '../services/biometric.dart';
 import '../widgets/app_scope.dart';
@@ -31,7 +31,8 @@ class _UnlockScreenState extends State<UnlockScreen> {
 
   Future<void> _biometric() async {
     final app = AppScope.appOf(context);
-    if (!await Biometric.instance.authenticate(reason: 'Unlock Bitanon')) return;
+    if (!await Biometric.instance.authenticate(reason: 'Unlock Bitanon'))
+      return;
     if (await app.unlockWithCachedKey()) _open();
   }
 

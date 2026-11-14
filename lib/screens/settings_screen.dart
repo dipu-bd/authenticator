@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../router.dart';
 import '../services/backup_file.dart';
@@ -35,14 +35,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
       return;
     }
     if (!await Biometric.instance.isAvailable()) {
-      if (mounted)
+      if (mounted) {
         showAppToast(context, theme, 'No biometrics enrolled on this device');
+      }
       return;
     }
     if (!await Biometric.instance.authenticate(
       reason: 'Enable biometric unlock',
-    ))
+    )) {
       return;
+    }
     await app.setBiometricEnabled(true);
     if (mounted) showAppToast(context, theme, 'Biometric unlock enabled');
   }
@@ -321,11 +323,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       return;
     }
     final added = await app.mergeAccounts(accounts);
-    if (mounted)
+    if (mounted) {
       showAppToast(
         context,
         theme,
         'Imported $added ${added == 1 ? 'account' : 'accounts'}',
       );
+    }
   }
 }

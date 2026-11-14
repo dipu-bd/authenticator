@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Maps the prototype's Lucide-style icon names to the closest Material icon.
 /// The design notes that its glyphs map closely to Lucide; Material's outlined

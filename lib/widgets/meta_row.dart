@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../theme/app_theme.dart';
 
 /// A label/value row used in the detail meta list and the Drive status list.
@@ -31,14 +31,22 @@ class MetaRow extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text(label, style: theme.ui(size: 14, weight: FontWeight.w500, color: theme.muted)),
+          Text(
+            label,
+            style: theme.ui(
+              size: 14,
+              weight: FontWeight.w500,
+              color: theme.muted,
+            ),
+          ),
           const Spacer(),
           Flexible(
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Flexible(
-                  child: valueWidget ??
+                  child:
+                      valueWidget ??
                       Text(
                         value ?? '',
                         maxLines: 1,
@@ -49,10 +57,7 @@ class MetaRow extends StatelessWidget {
                             : theme.ui(size: 14.5, weight: FontWeight.w500),
                       ),
                 ),
-                if (action != null) ...[
-                  const SizedBox(width: 12),
-                  action!,
-                ],
+                if (action != null) ...[const SizedBox(width: 12), action!],
               ],
             ),
           ),

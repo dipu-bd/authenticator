@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A single TOTP account in the vault.
 @immutable
@@ -40,26 +40,26 @@ class Account {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'issuer': issuer,
-        'label': label,
-        'secret': secret,
-        'logo': logo,
-        'color': color.toARGB32(),
-        'period': period,
-        'digits': digits,
-        'algorithm': algorithm,
-      };
+    'id': id,
+    'issuer': issuer,
+    'label': label,
+    'secret': secret,
+    'logo': logo,
+    'color': color.toARGB32(),
+    'period': period,
+    'digits': digits,
+    'algorithm': algorithm,
+  };
 
   factory Account.fromJson(Map<String, dynamic> j) => Account(
-        id: j['id'] as String,
-        issuer: j['issuer'] as String,
-        label: (j['label'] as String?) ?? '',
-        secret: j['secret'] as String,
-        logo: (j['logo'] as String?) ?? '',
-        color: Color((j['color'] as num).toInt()),
-        period: (j['period'] as num?)?.toInt() ?? 30,
-        digits: (j['digits'] as num?)?.toInt() ?? 6,
-        algorithm: (j['algorithm'] as String?) ?? 'SHA-1',
-      );
+    id: j['id'] as String,
+    issuer: j['issuer'] as String,
+    label: (j['label'] as String?) ?? '',
+    secret: j['secret'] as String,
+    logo: (j['logo'] as String?) ?? '',
+    color: Color((j['color'] as num).toInt()),
+    period: (j['period'] as num?)?.toInt() ?? 30,
+    digits: (j['digits'] as num?)?.toInt() ?? 6,
+    algorithm: (j['algorithm'] as String?) ?? 'SHA-1',
+  );
 }

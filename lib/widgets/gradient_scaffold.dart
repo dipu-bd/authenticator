@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../theme/app_theme.dart';
 
 /// A scaffold whose body sits on the app's radial background gradient.
@@ -21,10 +21,7 @@ class GradientScaffold extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: DecoratedBox(
         decoration: BoxDecoration(gradient: theme.bgGradient),
-        child: SafeArea(
-          bottom: safeBottom,
-          child: child,
-        ),
+        child: SafeArea(bottom: safeBottom, child: child),
       ),
     );
   }

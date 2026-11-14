@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A slide + fade page transition matching the prototype's screen push
 /// (~320ms, cubic-bezier(0.32, 0.72, 0, 1)). Forward slides in from the

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../theme/app_theme.dart';
 import 'app_icons.dart';
 
@@ -85,11 +85,20 @@ class ScreenHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(title,
-                    style: theme.ui(size: 20, weight: FontWeight.w700, height: 1.1)),
+                Text(
+                  title,
+                  style: theme.ui(
+                    size: 20,
+                    weight: FontWeight.w700,
+                    height: 1.1,
+                  ),
+                ),
                 if (subtitle != null) ...[
                   const SizedBox(height: 2),
-                  Text(subtitle!, style: theme.ui(size: 12.5, color: theme.dim)),
+                  Text(
+                    subtitle!,
+                    style: theme.ui(size: 12.5, color: theme.dim),
+                  ),
                 ],
               ],
             ),

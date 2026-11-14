@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../models/account.dart';
 import 'totp.dart';
@@ -11,10 +11,21 @@ class OtpAuth {
   /// A spread of pleasant brand-ish colors; chosen deterministically per issuer
   /// so the same service always gets the same tile color.
   static const List<Color> _palette = [
-    Color(0xFF4285F4), Color(0xFF1652F0), Color(0xFFFF9900), Color(0xFF0061FF),
-    Color(0xFF5865F2), Color(0xFFF6821F), Color(0xFFA259FF), Color(0xFFF0B90B),
-    Color(0xFF611F69), Color(0xFF635BFF), Color(0xFF0070E0), Color(0xFF9146FF),
-    Color(0xFF34D399), Color(0xFFF43F5E), Color(0xFF6366F1),
+    Color(0xFF4285F4),
+    Color(0xFF1652F0),
+    Color(0xFFFF9900),
+    Color(0xFF0061FF),
+    Color(0xFF5865F2),
+    Color(0xFFF6821F),
+    Color(0xFFA259FF),
+    Color(0xFFF0B90B),
+    Color(0xFF611F69),
+    Color(0xFF635BFF),
+    Color(0xFF0070E0),
+    Color(0xFF9146FF),
+    Color(0xFF34D399),
+    Color(0xFFF43F5E),
+    Color(0xFF6366F1),
   ];
 
   static Color colorForIssuer(String issuer) {

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// A deterministic QR-ish matrix rendered from a seed string. Purely
 /// decorative — used to preview an account's "share" code in the design.
@@ -66,20 +66,39 @@ class _QrPainter extends CustomPainter {
         if (rnd() > 0.52) {
           final rect = Rect.fromLTWH(c * cell, r * cell, cell, cell);
           canvas.drawRRect(
-              RRect.fromRectAndRadius(rect, Radius.circular(cell * 0.25)), fgPaint);
+            RRect.fromRectAndRadius(rect, Radius.circular(cell * 0.25)),
+            fgPaint,
+          );
         }
       }
     }
 
     void drawFinder(int x, int y) {
       final outer = Rect.fromLTWH(x * cell, y * cell, cell * 7, cell * 7);
-      canvas.drawRRect(RRect.fromRectAndRadius(outer, Radius.circular(cell)), fgPaint);
-      final mid = Rect.fromLTWH((x + 1) * cell, (y + 1) * cell, cell * 5, cell * 5);
       canvas.drawRRect(
-          RRect.fromRectAndRadius(mid, Radius.circular(cell * 0.7)), Paint()..color = bg);
-      final inner = Rect.fromLTWH((x + 2) * cell, (y + 2) * cell, cell * 3, cell * 3);
+        RRect.fromRectAndRadius(outer, Radius.circular(cell)),
+        fgPaint,
+      );
+      final mid = Rect.fromLTWH(
+        (x + 1) * cell,
+        (y + 1) * cell,
+        cell * 5,
+        cell * 5,
+      );
       canvas.drawRRect(
-          RRect.fromRectAndRadius(inner, Radius.circular(cell * 0.4)), fgPaint);
+        RRect.fromRectAndRadius(mid, Radius.circular(cell * 0.7)),
+        Paint()..color = bg,
+      );
+      final inner = Rect.fromLTWH(
+        (x + 2) * cell,
+        (y + 2) * cell,
+        cell * 3,
+        cell * 3,
+      );
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(inner, Radius.circular(cell * 0.4)),
+        fgPaint,
+      );
     }
 
     drawFinder(0, 0);
@@ -88,5 +107,6 @@ class _QrPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_QrPainter old) => old.seed != seed || old.fg != fg || old.bg != bg;
+  bool shouldRepaint(_QrPainter old) =>
+      old.seed != seed || old.fg != fg || old.bg != bg;
 }

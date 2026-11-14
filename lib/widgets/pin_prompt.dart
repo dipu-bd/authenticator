@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import '../theme/app_theme.dart';
 
 /// Asks for the PIN a backup was encrypted with (used when the current session
@@ -9,7 +9,10 @@ Future<String?> askBackupPin(BuildContext context, AppTheme theme) {
     context: context,
     builder: (ctx) => AlertDialog(
       backgroundColor: theme.surface,
-      title: Text("Backup's PIN", style: theme.ui(size: 17, weight: FontWeight.w700)),
+      title: Text(
+        "Backup's PIN",
+        style: theme.ui(size: 17, weight: FontWeight.w700),
+      ),
       content: TextField(
         controller: ctrl,
         autofocus: true,
@@ -29,7 +32,14 @@ Future<String?> askBackupPin(BuildContext context, AppTheme theme) {
         ),
         TextButton(
           onPressed: () => Navigator.pop(ctx, ctrl.text),
-          child: Text('Restore', style: theme.ui(size: 14, weight: FontWeight.w600, color: theme.accent)),
+          child: Text(
+            'Restore',
+            style: theme.ui(
+              size: 14,
+              weight: FontWeight.w600,
+              color: theme.accent,
+            ),
+          ),
         ),
       ],
     ),
